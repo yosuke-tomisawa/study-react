@@ -1,7 +1,7 @@
 import Image from "next/image";
 import styles from "@/styles/Home.module.css";
 
-export function Footer() {
+export function Footer(props) {
   return (
     <footer className={styles.footer}>
       <a
@@ -44,7 +44,7 @@ export function Footer() {
           width={16}
           height={16}
         />
-        Go to nextjs.org →
+        From {props.title} →
       </a>
     </footer>
   );

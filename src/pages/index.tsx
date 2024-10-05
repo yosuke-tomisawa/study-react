@@ -32,7 +32,7 @@ export default function Home() {
           <Links />
         </main>
 
-        <Footer />
+        <Footer title="index page" />
       </div>
     </>
   );
