@@ -29,7 +29,14 @@ export default function Home() {
       >
         <main className={styles.main}>
           <h1>About Page</h1>
-          <Links />
+          <Links onClick={() => alert("アバウトページです")}>
+            <ol>
+              <li>
+                Get started by editing <code>about.pages</code>.
+              </li>
+              <li>Save and see your changes instantly.</li>
+            </ol>
+          </Links>
         </main>
 
         <Footer title="about page" />

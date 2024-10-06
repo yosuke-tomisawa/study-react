@@ -1,7 +1,8 @@
 import Image from "next/image";
 import styles from "@/styles/Home.module.css";
 
-export function Links() {
+export function Links(props) {
+  console.log(props);
   return (
     <>
       <Image
@@ -12,12 +13,10 @@ export function Links() {
         height={38}
         priority
       />
-      <ol>
-        <li>
-          Get started by editing <code>src/pages/index.tsx</code>.
-        </li>
-        <li>Save and see your changes instantly.</li>
-      </ol>
+
+      {props.children}
+
+      <button onClick={props.onClick}>ボタン</button>
 
       <div className={styles.ctas}>
         <a

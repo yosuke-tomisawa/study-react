@@ -29,7 +29,14 @@ export default function Home() {
       >
         <main className={styles.main}>
           <h1>Index Page</h1>
-          <Links />
+          <Links onClick={() => alert("トップページです")}>
+            <ol>
+              <li>
+                Get started by editing <code>about.pages</code>.
+              </li>
+              <li>Save and see your changes instantly.</li>
+            </ol>
+          </Links>
         </main>
 
         <Footer title="index page" />
