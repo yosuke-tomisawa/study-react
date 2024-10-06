@@ -41,7 +41,7 @@ export default function Home() {
           </Links>
         </main>
 
-        <Footer title="about page" />
+        <Footer />
       </div>
     </>
   );
