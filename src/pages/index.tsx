@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import styles from "@/styles/Home.module.css";
 import { Footer } from "../../components/Footer";
 import { Links } from "../../components/Links";
+import { Header } from "../../components/Header";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -28,6 +29,7 @@ export default function Home() {
         className={`${styles.page} ${geistSans.variable} ${geistMono.variable}`}
       >
         <main className={styles.main}>
+          <Header />
           <h1>Index Page</h1>
           <Links onClick={() => alert("トップページです")}>
             <ol>

@@ -1,0 +1,17 @@
+.header {
+  border-bottom: 1px solid #eaeaea;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.anchor {
+  display: inline-block;
+  padding: 8px 10px;
+  font-size: 20px;
+}
+
+.anchor:hover {
+  color: aqua;
+}
