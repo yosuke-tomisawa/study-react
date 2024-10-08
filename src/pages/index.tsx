@@ -4,6 +4,7 @@ import styles from "@/styles/Home.module.css";
 import { Footer } from "src/components/Footer";
 import { Links } from "src/components/Links";
 import { Header } from "src/components/Header";
+import { useCallback } from "react";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -17,6 +18,12 @@ const geistMono = localFont({
 });
 
 export default function Home() {
+  const foo = 1;
+  const handleClick = useCallback((e) => {
+    console.log(e.target.href);
+    e.preventDefault();
+    alert(foo);
+  }, []);
   return (
     <>
       <Head>
@@ -32,6 +39,7 @@ export default function Home() {
           <Header />
           <h1>Index Page</h1>
           <Links onClick={() => alert("トップページです")}>
+            <button onClick={handleClick}>ボタン</button>
             <ol>
               <li>
                 Get started by editing <code>about.pages</code>.
