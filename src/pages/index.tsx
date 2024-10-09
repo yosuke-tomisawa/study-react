@@ -4,7 +4,7 @@ import styles from "@/styles/Home.module.css";
 import { Footer } from "src/components/Footer";
 import { Links } from "src/components/Links";
 import { Header } from "src/components/Header";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -23,6 +23,13 @@ export default function Home() {
     console.log(e.target.href);
     e.preventDefault();
     alert(foo);
+  }, []);
+
+  useEffect(() => {
+    document.body.style.backgroundColor = "lightblue";
+    return () => {
+      document.body.style.backgroundColor = "";
+    };
   }, []);
   return (
     <>
