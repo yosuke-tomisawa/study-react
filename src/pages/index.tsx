@@ -4,7 +4,7 @@ import styles from "@/styles/Home.module.css";
 import { Footer } from "src/components/Footer";
 import { Links } from "src/components/Links";
 import { Header } from "src/components/Header";
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -18,12 +18,12 @@ const geistMono = localFont({
 });
 
 export default function Home() {
-  const foo = 1;
-  const handleClick = useCallback((e) => {
-    console.log(e.target.href);
-    e.preventDefault();
-    alert(foo);
-  }, []);
+  // let foo = 1;
+  const [count, setCount] = useState(1);
+  const handleClick = (e) => {
+    // foo = foo + 1;
+    setCount((count) => count + 1);
+  };
 
   useEffect(() => {
     document.body.style.backgroundColor = "lightblue";
@@ -46,6 +46,7 @@ export default function Home() {
           <Header />
           <h1>Index Page</h1>
           <Links onClick={() => alert("トップページです")}>
+            <p>{count}</p>
             <button onClick={handleClick}>ボタン</button>
             <ol>
               <li>
