@@ -20,10 +20,20 @@ const geistMono = localFont({
 export default function Home() {
   // let foo = 1;
   const [count, setCount] = useState(1);
-  const handleClick = (e) => {
-    // foo = foo + 1;
-    setCount((count) => count + 1);
-  };
+  const [text, setText] = useState("");
+  const [isShow, setIsShow] = useState(true);
+  const handleClick = useCallback(
+    (e) => {
+      if (count < 10) {
+        setCount((count) => count + 1);
+      }
+    },
+    [count]
+  );
+
+  const handleDisplay = useCallback(() => {
+    setIsShow((isShow) => !isShow);
+  }, []);
 
   useEffect(() => {
     document.body.style.backgroundColor = "lightblue";
@@ -31,6 +41,15 @@ export default function Home() {
       document.body.style.backgroundColor = "";
     };
   }, []);
+
+  const handleChange = useCallback((e) => {
+    if (e.target.value.length >= 5) {
+      alert("文字数は5文字まで");
+      return;
+    }
+    setText(e.target.value.trim());
+  }, []);
+
   return (
     <>
       <Head>
@@ -46,8 +65,12 @@ export default function Home() {
           <Header />
           <h1>Index Page</h1>
           <Links onClick={() => alert("トップページです")}>
-            <p>{count}</p>
+            {isShow ? <p>{count}</p> : null}
             <button onClick={handleClick}>ボタン</button>
+            <button onClick={handleDisplay}>
+              {isShow ? "非表示" : "表示"}
+            </button>
+            <input type="text" value={text} onChange={handleChange} />
             <ol>
               <li>
                 Get started by editing <code>about.pages</code>.
