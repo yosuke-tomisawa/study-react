@@ -2,9 +2,10 @@ import Head from "next/head";
 import localFont from "next/font/local";
 import styles from "@/styles/Home.module.css";
 import { Footer } from "src/components/Footer";
-import { Links } from "src/components/Links";
 import { Header } from "src/components/Header";
-import { useCallback, useEffect, useState } from "react";
+import { useCounter } from "src/hooks/useCounter";
+import { useInputArray } from "src/hooks/useImputArray";
+import { useBgLightBlue } from "src/hooks/useBgLightBlue";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -17,46 +18,10 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-export default function Home() {
-  // let foo = 1;
-  const [count, setCount] = useState(1);
-  const [text, setText] = useState("");
-  const [isShow, setIsShow] = useState(true);
-  const [array, setArray] = useState<string[]>([]);
-  const handleClick = useCallback(() => {
-    if (count < 10) {
-      setCount((prevCount) => prevCount + 1);
-    }
-  }, [count]);
-
-  const handleDisplay = useCallback(() => {
-    setIsShow((prevIsShow) => !prevIsShow);
-  }, []);
-
-  const handleAdd = useCallback(() => {
-    setArray((prevArray) => {
-      if (prevArray.some((item) => item === text)) {
-        alert("同じ要素がすでに存在します");
-        return prevArray;
-      }
-      return [...prevArray, text];
-    });
-  }, [text]);
-
-  useEffect(() => {
-    document.body.style.backgroundColor = "lightblue";
-    return () => {
-      document.body.style.backgroundColor = "";
-    };
-  }, []);
-
-  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value.length >= 5) {
-      alert("文字数は5文字まで");
-      return;
-    }
-    setText(e.target.value.trim());
-  }, []);
+export default function About() {
+  const { count, isShow, handleClick, handleDisplay } = useCounter();
+  const { text, array, handleAdd, handleChange } = useInputArray();
+  useBgLightBlue();
 
   return (
     <>
@@ -72,26 +37,25 @@ export default function Home() {
         <main className={styles.main}>
           <Header />
           <h1>Index Page</h1>
-          <Links onClick={() => alert("トップページです")}>
-            {isShow ? <p>{count}</p> : null}
-            <button onClick={handleClick}>ボタン</button>
-            <button onClick={handleDisplay}>
-              {isShow ? "非表示" : "表示"}
-            </button>
-            <input type="text" value={text} onChange={handleChange} />
-            <button onClick={handleAdd}>追加</button>
-            <ul>
-              {array.map((item) => {
-                return <li key={item}>{item}</li>;
-              })}
-            </ul>
-            <ol>
-              <li>
-                Get started by editing <code>about.pages</code>.
-              </li>
-              <li>Save and see your changes instantly.</li>
-            </ol>
-          </Links>
+
+          {isShow ? <p>{count}</p> : null}
+          <button onClick={handleClick}>ボタン</button>
+          <button onClick={handleDisplay}>{isShow ? "非表示" : "表示"}</button>
+
+          <input type="text" value={text} onChange={handleChange} />
+          <button onClick={handleAdd}>追加</button>
+          <ul>
+            {array.map((item) => {
+              return <li key={item}>{item}</li>;
+            })}
+          </ul>
+
+          <ol>
+            <li>
+              Get started by editing <code>about.pages</code>.
+            </li>
+            <li>Save and see your changes instantly.</li>
+          </ol>
         </main>
 
         <Footer />
