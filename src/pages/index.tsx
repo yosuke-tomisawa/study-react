@@ -23,14 +23,11 @@ export default function Home() {
   const [text, setText] = useState("");
   const [isShow, setIsShow] = useState(true);
   const [array, setArray] = useState([]);
-  const handleClick = useCallback(
-    (e) => {
-      if (count < 10) {
-        setCount((prevCount) => prevCount + 1);
-      }
-    },
-    [count]
-  );
+  const handleClick = useCallback(() => {
+    if (count < 10) {
+      setCount((prevCount) => prevCount + 1);
+    }
+  }, [count]);
 
   const handleDisplay = useCallback(() => {
     setIsShow((prevIsShow) => !prevIsShow);
@@ -42,7 +39,7 @@ export default function Home() {
         alert("同じ要素がすでに存在します");
         return prevArray;
       }
-      return [...prevArray, text];
+      return [...prevArray, text]; // 正しい形に修正
     });
   }, [text]);
 
