@@ -3,9 +3,6 @@ import localFont from "next/font/local";
 import styles from "@/styles/Home.module.css";
 import { Footer } from "src/components/Footer";
 import { Header } from "src/components/Header";
-import { useCounter } from "src/hooks/useCounter";
-import { useInputArray } from "src/hooks/useImputArray";
-import { useBgLightBlue } from "src/hooks/useBgLightBlue";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -18,11 +15,17 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-export default function About() {
-  const { count, isShow, handleClick, handleDisplay } = useCounter();
-  const { text, array, handleAdd, handleChange } = useInputArray();
-  useBgLightBlue();
-
+export default function About(props) {
+  const {
+    count,
+    isShow,
+    handleClick,
+    handleDisplay,
+    text,
+    array,
+    handleAdd,
+    handleChange,
+  } = props;
   return (
     <>
       <Head>
