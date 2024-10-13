@@ -22,7 +22,7 @@ export default function Home() {
   const [count, setCount] = useState(1);
   const [text, setText] = useState("");
   const [isShow, setIsShow] = useState(true);
-  const [array, setArray] = useState([]);
+  const [array, setArray] = useState<string[]>([]);
   const handleClick = useCallback(() => {
     if (count < 10) {
       setCount((prevCount) => prevCount + 1);
@@ -39,7 +39,7 @@ export default function Home() {
         alert("同じ要素がすでに存在します");
         return prevArray;
       }
-      return [...prevArray, text]; // 正しい形に修正
+      return [...prevArray, text];
     });
   }, [text]);
 
@@ -50,7 +50,7 @@ export default function Home() {
     };
   }, []);
 
-  const handleChange = useCallback((e) => {
+  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.value.length >= 5) {
       alert("文字数は5文字まで");
       return;
